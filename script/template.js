@@ -27,7 +27,9 @@ const template = (title, description, installation, usage, license, contributors
     
     ${license}
     
-    ## Badges
-    
-    `
+    ## Badges`
+}
+
+module.exports = {
+    template
 }
