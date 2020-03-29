@@ -37,5 +37,5 @@ let question = [
 ]
 
 module.exports = {
-    question
+    question,
 }

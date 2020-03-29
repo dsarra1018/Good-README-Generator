@@ -3,7 +3,6 @@ const fs = require("fs");
 const inquirer = require("inquirer");
 const axios = require("axios");
 const question = require("./script/questions");
-const temp = require("./script/template");
 
 // prompt the user to enter information
 const answers = inquirer.prompt(question.question);
@@ -16,27 +15,58 @@ answers.then(({username}) =>{
     // getting user avatar
     axios.get(queryUrl).then(response => {
         let avatar = response.data.avatar_url;
-        response.userAvatar = avatar;
+        answers.userAvatar = avatar;
     })
 
     // getting user email
     axios.get(queryUrl2).then(response => {
         let userMail = response.data[0].payload.commits[0];
-        response.email = userMail;
+        answers.email = userMail;
     })
 
 })
-.then((response) => {
-    const text = temp.template(JSON.stringify(response));
-    console.log(text);
-    console.log(response.email);
+answers.then((response) =>{
+    let readme = `# ${response.title}
+
+## Description
     
+${response.description}
+    
+## Table of Contents
+    
+[Installation](#Installation) | [Usage](#Usage) | [Credits](#Credits) | [License](#License)
+    
+
+## Installation
+    
+${response.installation}
+    
+## Usage
+    
+${response.usage}
+    
+    
+## Credits
+    
+${response.contributors}
+    
+## License
+    
+${response.license}
+
+![](${response.userAvatar}&s=200)
+    
+## Badges
+    
+[![](https://img.shields.io/badge/gitHub-${response.username}-blue?style=plastic)](https://www.github.com/${response.username}) | 
+[![](https://img.shields.io/badge/email-${response.email}-purple?style=plastic)](mailto:${response.email})`
+
+    fs.writeFile("README.md", readme, "utf8", function(err){
+        if (err){
+            console.log(err);
+        }
+        else {
+            console.log("README successfully generated.");
+        }
+    })
 })
-// fs.writeFile("README.md", temp.template(answers), function(err){
-//     if (err){
-//         console.log(err);
-//     }
-//     else{
-//         console.log("README has been generated.");
-//     }
-// });
