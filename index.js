@@ -1,6 +1,7 @@
 // initializing all requires
 const fs = require("fs");
 const inquirer = require("inquirer");
+const axios = require("axios");
 
 inquirer
     .prompt([
@@ -39,4 +40,16 @@ inquirer
             message: "What is your Github username?",
             name: "username"
         }
-    ]);
+    ])
+    .then(({username}) => {
+        const queryUrl = `https://api.github.com/users/${username}`;
+        const queryUrl2 = `https://api.github.com/users/${username}/events/public`;
+
+        // axios.get(queryUrl).then( response =>{
+        //     console.log(response.data);
+        // })
+
+        axios.get(queryUrl2).then(response =>{
+            console.log(response.data[0].payload.commits[0]);
+        })
+    })
