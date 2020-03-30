@@ -1,8 +1,8 @@
-# Good-README-Generator
+# 
 
 ## Description
     
-An application that generates a README.md
+
     
 ## Table of Contents
     
@@ -11,20 +11,20 @@ An application that generates a README.md
 
 ## Installation
     
-node index.js
+
     
 ## Usage
     
-Initializes a README for a project
+
     
     
 ## Credits
     
-n/a
+
     
 ## License
     
-MIT
+
 
 ![](undefined&s=200)
     

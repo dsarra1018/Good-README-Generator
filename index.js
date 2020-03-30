@@ -15,13 +15,14 @@ answers.then(({username}) =>{
     // getting user avatar
     axios.get(queryUrl).then(response => {
         let avatar = response.data.avatar_url;
-        answers.userAvatar = avatar;
+        response.userAvatar = avatar;
     })
 
     // getting user email
     axios.get(queryUrl2).then(response => {
-        let userMail = response.data[0].payload.commits[0];
-        answers.email = userMail;
+        let userMail = response.data[0].payload.commits[0].author.email;
+        response.email = userMail;
+        console.log(response.email);
     })
 
 })
@@ -34,7 +35,7 @@ ${response.description}
     
 ## Table of Contents
     
-[Installation](#Installation) | [Usage](#Usage) | [Credits](#Credits) | [License](#License)
+[Installation](#Installation) | [Usage](#Usage) | [Contributing](#Contributing) | [License](#License)
     
 
 ## Installation
@@ -46,7 +47,7 @@ ${response.installation}
 ${response.usage}
     
     
-## Credits
+## Contributing
     
 ${response.contributors}
     
@@ -54,9 +55,11 @@ ${response.contributors}
     
 ${response.license}
 
+## Test
+
 ![](${response.userAvatar}&s=200)
     
-## Badges
+## Questions
     
 [![](https://img.shields.io/badge/gitHub-${response.username}-blue?style=plastic)](https://www.github.com/${response.username}) | 
 [![](https://img.shields.io/badge/email-${response.email}-purple?style=plastic)](mailto:${response.email})`
