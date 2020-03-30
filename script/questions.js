@@ -31,6 +31,11 @@ let question = [
     },
     {
         type: "input",
+        message: "What test are you running?",
+        name: "test"
+    },
+    {
+        type: "input",
         message: "What is your Github username?",
         name: "username"
     }

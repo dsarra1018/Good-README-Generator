@@ -6,12 +6,12 @@ An application that generates a README.md
             
 ## Table of Contents
             
-[Installation](#Installation) | [Usage](#Usage) | [Contributing](#Contributing) | [License](#License)
+[Installation](#Installation) | [Usage](#Usage) | [Contributing](#Contributing) | [License](#License) | [Test](#Test)
             
         
 ## Installation
             
-node index.js
+npm install
             
 ## Usage
             
@@ -27,8 +27,10 @@ n/a
 MIT
         
 ## Test
+
+n/a
         
-![](undefined&s=200)
+![](https://avatars1.githubusercontent.com/u/46734800?v=4&s=200)
             
 ## Questions
             

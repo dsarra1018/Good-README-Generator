@@ -10,14 +10,12 @@ async function generateREADME() {
         const answers = await inquirer.prompt(question.question);
 
         // getting user avatar
-        // let avatar = await axios.get(`https://api.github.com/users/${answers.username}`);
-        // answers.userAvatar = avatar.avatar_url;
-        // console.log(answers.userAvatar)
+        let avatar = await axios.get(`https://api.github.com/users/${answers.username}`);
+        answers.userAvatar = avatar.data.avatar_url;
 
         // getting user email
         let email = await axios.get(`https://api.github.com/users/${answers.username}/events/public`);
         answers.userMail = email.data[0].payload.commits[0].author.email;
-        console.log(answers.userMail);
 
         // template literal
         let readme = `# ${answers.title}
@@ -28,7 +26,7 @@ ${answers.description}
             
 ## Table of Contents
             
-[Installation](#Installation) | [Usage](#Usage) | [Contributing](#Contributing) | [License](#License)
+[Installation](#Installation) | [Usage](#Usage) | [Contributing](#Contributing) | [License](#License) | [Test](#Test)
             
         
 ## Installation
@@ -49,6 +47,8 @@ ${answers.contributors}
 ${answers.license}
         
 ## Test
+
+${answers.test}
         
 ![](${answers.userAvatar}&s=200)
             
